@@ -13,8 +13,6 @@ RUN useradd -m -s /bin/bash user && \
     mkdir -p /home/user && \
     chown -R user /home/user/
 
-USER user
-
 COPY comps /home/user/comps
 
 RUN pip install --no-cache-dir --upgrade pip setuptools && \
@@ -23,7 +21,7 @@ RUN pip install --no-cache-dir --upgrade pip setuptools && \
 
 ENV PYTHONPATH=$PYTHONPATH:/home/user
 
+USER user
 WORKDIR /home/user/comps/embeddings/src/integrations/dependency/clip/
 
 ENTRYPOINT ["python", "clip_server.py"]
-

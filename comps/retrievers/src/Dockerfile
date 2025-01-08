@@ -23,6 +23,8 @@ RUN pip install --no-cache-dir --upgrade pip setuptools && \
 
 ENV PYTHONPATH=$PYTHONPATH:/home/user
 
+USER user
+
 WORKDIR /home/user/comps/retrievers/src
 
 ENTRYPOINT ["python", "opea_retrievers_microservice.py"]
