@@ -286,7 +286,7 @@ function validate_microservice_streaming() {
 function validate_assistant_api() {
     cd $WORKPATH
     echo "Testing agent service - assistant api"
-    local CONTENT=$(python3 comps/agent/src/test_assistant_api.py --ip_addr ${ip_address} --ext_port 9095 --assistants_api_test --query 'What is Intel OPEA project?' 2>&1 | tee ${LOG_PATH}/test-agent-assistantsapi.log)
+    local CONTENT=$(python3 comps/agent/src/test_assistant_api.py --ip_addr ${ip_address} --ext_port 9095 --assistants_api_test --query 'What is Intel OPEA project?' --llm_endpoint_url $LLM_ENDPOINT_URL 2>&1 | tee ${LOG_PATH}/test-agent-assistantsapi.log)
     local EXIT_CODE=$(validate "$CONTENT" "OPEA" "test-agent-assistantsapi")
     echo "$EXIT_CODE"
     local EXIT_CODE="${EXIT_CODE:0-1}"
